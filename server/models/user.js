@@ -41,4 +41,11 @@ let userSchema = new Schema({
 
 userSchema.plugin(uniqueValidator, { message: '{PATH} ya existe' });
 
+userSchema.methods.toJSON = function() {
+    let user = this.toObject();
+    delete user.password;
+
+    return user;
+};
+
 module.exports = mongoose.model('User', userSchema);
