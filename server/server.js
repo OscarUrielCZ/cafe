@@ -8,9 +8,11 @@ require('./config/config');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(require('./routes/user'));
+// Configuración global de rutas
+app.use(require('./routes/index'));
 
-mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err, resp) => {
+// Conexión a la base de datos
+mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true }, (err, resp) => {
     if (err) throw err;
 
     console.log('Connected to database');
