@@ -1,5 +1,5 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const _ = require('underscore');
 
 const User = require('../models/user');
@@ -34,9 +34,11 @@ app.get('/users', (req, res) => {
         });
 });
 
+// Create a new user
 app.post('/user', (req, res) => {
     const body = req.body;
 
+    console.log(body);
     const user = new User({
         name: body.name,
         email: body.email,
